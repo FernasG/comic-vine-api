@@ -1,5 +1,5 @@
-import express from 'express';
-import router from './src/routes';
+import express from 'express'
+import router from './src/routes'
 
 (() => {
     const app = express();
