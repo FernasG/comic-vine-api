@@ -7,8 +7,6 @@ export const Connection = ((): Promise<DataSource | null> => {
         entities: ['dist/**/entities/*.entity.{js,ts}']
     };
 
-    console.log(databaseConfig);
-
     const connection = new DataSource(databaseConfig).initialize().catch(err => {
         console.error(err.message);
         return null;
