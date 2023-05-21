@@ -1,9 +1,12 @@
 import { Router, Request, Response } from "express";
+import { Connection } from "@database";
 
-const ExpressRouter = Router();
+const router = Router();
 
-ExpressRouter.get('', (req: Request, res: Response) => {
+router.get('', (req: Request, res: Response) => {
+    const connection = Connection();
+    
     res.send('Server OK.');
 });
 
-export default ExpressRouter;
+export default router;

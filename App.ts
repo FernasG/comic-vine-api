@@ -1,5 +1,6 @@
-import express from 'express';
-import router from './src/routes';
+import "reflect-metadata";
+import express from "express";
+import router from "./src/routes";
 
 (() => {
     const app = express();
