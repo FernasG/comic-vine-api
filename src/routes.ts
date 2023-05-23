@@ -1,11 +1,11 @@
 import { Router, Request, Response } from "express";
-import { Connection } from "@database";
+import { CharactersLoader } from "./loaders";
 
 const router = Router();
 
-router.get('', (req: Request, res: Response) => {
-    const connection = Connection();
-    
+router.get('', async (req: Request, res: Response) => {
+    await CharactersLoader();
+
     res.send('Server OK.');
 });
 
