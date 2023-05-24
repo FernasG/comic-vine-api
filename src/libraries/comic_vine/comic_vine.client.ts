@@ -1,34 +1,26 @@
 import { Axios } from "axios";
-import { CacheClient } from "../"
-import { GetKeyResult, GetParams, RequestConfig } from "./comic_vine.interface";
+import { KeyManager } from "./key_manager";
+import { GetParams, RequestConfig } from "./comic_vine.interface";
 
 export class ComicVineClient {
-    private readonly cacheClient: CacheClient;
     private readonly endpoint: string = 'https://comicvine.gamespot.com/api';
-    private readonly apiKeys: string[];
+    private readonly keyManager: KeyManager;
     private axiosClient: Axios;
 
     constructor() {
         this.axiosClient = new Axios({ baseURL: this.endpoint });
-        this.cacheClient = new CacheClient();
-
-        const keys = process.env.COMIC_VINE_API_KEYS;
-        this.apiKeys = keys ? keys.split(',') : [];
+        this.keyManager = new KeyManager();
     }
 
     public async get<T>(getParams: GetParams): Promise<T | null> {
         const { resource, field_list, offset } = getParams;
 
-        if (!this.cacheClient.isConnected) await this.cacheClient.connect();
+        const apiKey = await this.keyManager.getKey(resource);
 
-        const apiKeyParams = await this.getKey(resource);
-
-        if (!apiKeyParams) {
+        if (!apiKey) {
             console.error({ method: 'ComicVineClient.get', message: 'No API Key available.' });
             return null;
         }
-
-        const { key: apiKey, cache_key: cacheKey, count } = apiKeyParams;
 
         const requestConfig: RequestConfig = { params: { api_key: apiKey, format: 'json', offset: offset ?? 0 } };
 
@@ -36,7 +28,7 @@ export class ComicVineClient {
 
         const apiResponse = await this.axiosClient.get(resource, requestConfig)
             .then(async ({ data }) => {
-                await this.cacheClient.set(cacheKey, count + 1);
+                await this.keyManager.updateKeyCount(apiKey, resource);
                 return JSON.parse(data);
             })
             .catch(err => {
@@ -46,36 +38,7 @@ export class ComicVineClient {
 
         if (!apiResponse) return null;
 
-        console.log(await this.cacheClient.get(cacheKey));
-
         return apiResponse as T;
-    }
-
-    private async getKey(resource: string): Promise<GetKeyResult | null> {
-        if (!this.apiKeys.length) return null;
-
-        for (const apiKey of this.apiKeys) {
-            const cacheKey = `${apiKey}-${resource}`;
-            const hasKey = await this.cacheClient.exists(cacheKey);
-
-
-            if (hasKey) {
-                const value = await this.cacheClient.get(cacheKey);
-
-                if (!value) continue;
-
-                const count = parseInt(value);
-
-                if (count < 199) return { key: apiKey, cache_key: cacheKey, count };
-
-                continue;
-            }
-
-            await this.cacheClient.set(cacheKey, 0);
-            return { key: apiKey, cache_key: cacheKey, count: 0 };
-        }
-
-        return null;
     }
 
     private setupFieldList(fieldList: string[]): string {
