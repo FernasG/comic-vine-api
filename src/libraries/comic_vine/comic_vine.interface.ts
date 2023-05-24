@@ -12,3 +12,7 @@ export interface GetParams {
     resource: string;
     field_list?: string[];
 }
+
+export interface KeysUsageMap {
+    [x: string]: { count: number; first_request?: Date };
+}
