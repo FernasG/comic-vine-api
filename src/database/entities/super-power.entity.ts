@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryColumn } from "typeorm";
 @Entity()
 export default class SuperPoder{
 
-    @PrimaryColumn({type: 'integer', unsigned: true})
+    @PrimaryColumn({type: 'bigint', unsigned: true})
     id_poder: number;
 
     @Column({

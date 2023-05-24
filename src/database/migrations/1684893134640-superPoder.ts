@@ -8,7 +8,7 @@ export class SuperPoder1684893134640 implements MigrationInterface {
             columns: [
                 {
                     name: 'id_poder',
-                    type: 'integer',
+                    type: 'bigint',
                     isUnique: true,
                     unsigned: true,
                     isPrimary: true
