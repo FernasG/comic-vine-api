@@ -13,6 +13,8 @@ export interface GetParams {
     field_list?: string[];
 }
 
-export interface KeysUsageMap {
-    [x: string]: { count: number; first_request?: Date };
+export interface GetKeyResult {
+    key: string;
+    count: number;
+    cache_key: string;
 }
