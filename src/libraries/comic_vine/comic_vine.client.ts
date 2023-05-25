@@ -27,16 +27,15 @@ export class ComicVineClient {
         if (field_list && field_list.length > 0) requestConfig.params.field_list = this.setupFieldList(field_list);
 
         const apiResponse = await this.axiosClient.get(resource, requestConfig)
-            .then(async ({ data }) => {
-                await this.keyManager.updateKeyCount(apiKey, resource);
-                return JSON.parse(data);
-            })
+            .then(({ data }) => JSON.parse(data))
             .catch(err => {
                 console.error({ method: 'ComicVineClient.get', message: err.message });
                 return null;
             });
 
         if (!apiResponse) return null;
+
+        await this.keyManager.updateKeyCount(apiKey, resource);
 
         return apiResponse as T;
     }
