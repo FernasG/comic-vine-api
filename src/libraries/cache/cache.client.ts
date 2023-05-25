@@ -1,4 +1,5 @@
 import { RedisClientType, createClient } from "redis";
+import { HOURS_TO_SECONDS } from "./cache.interface";
 
 export class CacheClient {
     private readonly client: RedisClientType;
@@ -27,11 +28,8 @@ export class CacheClient {
     public async set(key: string, value: number | string): Promise<void> {
         this.checkConnection();
 
-        const date = new Date();
-        date.setHours(date.getHours() + 1);
-
         await this.client.set(key, value);
-        await this.client.expireAt(key, date);
+        await this.client.expire(key, HOURS_TO_SECONDS);
     }
 
     public async get(key: string): Promise<string | null> {
@@ -46,9 +44,16 @@ export class CacheClient {
         return this.client.exists(key);
     }
 
-    public async expireTime(key: string): Promise<number> {
+    public async ttl(key: string): Promise<number> {
+        this.checkConnection();
 
-        return this.client.expireTime(key);
+        return this.client.ttl(key);
+    }
+
+    public async keys(pattern: string) {
+        this.checkConnection();
+
+        return this.client.keys(pattern);
     }
 
     private checkConnection(): void {

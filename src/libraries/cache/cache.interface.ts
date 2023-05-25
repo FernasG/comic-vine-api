@@ -1,0 +1,1 @@
+export const HOURS_TO_SECONDS: number = 60 * 60;

@@ -18,3 +18,5 @@ export interface GetKeyResult {
     count: number;
     cache_key: string;
 }
+
+export const API_KEY_MAX_REQUEST: number = 200;
