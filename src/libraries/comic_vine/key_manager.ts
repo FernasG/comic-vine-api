@@ -32,6 +32,8 @@ export class KeyManager {
     }
 
     public async updateKeyCount(key: string, resource: string): Promise<void> {
+        await this.cacheClient.connect();
+
         const cacheKey = `${key}-${resource}`;
         const value = await this.cacheClient.get(cacheKey);
 
@@ -39,6 +41,8 @@ export class KeyManager {
 
         const count = parseInt(value);
         await this.cacheClient.set(cacheKey, count + 1);
+
+        await this.cacheClient.disconnect();
 
         return;
     }

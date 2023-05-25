@@ -8,14 +8,27 @@ export const CharactersLoader = (async () => {
 
     const comicVineClient = new ComicVineClient();
     const fieldList = ['id', 'name', 'real_name', 'origin', 'birth', 'description', 'count_of_issue_appearances']
+    let offset = 0;
+    let count = 1;
 
-    const apiResponse = await comicVineClient.get<any>({ resource: 'characters', field_list: fieldList });
+    while (true) {
+        const apiResponse = await comicVineClient.get<any>({ resource: 'characters', field_list: fieldList, offset });
 
-    if (!apiResponse || apiResponse.error !== 'OK') return null;
+        if (!apiResponse || apiResponse.error !== 'OK') {
+            console.error({ method: 'CharactersLoader', message: 'ComicVine request failed', offset });
+            break;
+        };
 
-    const { results: characters } = apiResponse;
+        const { results: characters } = apiResponse;
 
-    for (const char of characters) {
+        for (const char of characters) {
+            console.log(char.name);
+        }
+
+        offset += 100;
         
+        if (count === 100) break;
+
+        count++;
     }
 });
