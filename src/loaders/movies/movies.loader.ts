@@ -9,13 +9,28 @@ export const MoviesLoader = (async () => {
 
     const comicVineClient = new ComicVineClient();
     const fieldList = ['id', 'name', 'description', 'release_date', 'data_added', 'runtime', 'rating', 'budget', 'total_revenue']
+    let offset = 0;
+    let count = 1;
 
-    const apiResponse = await comicVineClient.get<any>({ resource: 'movies', field_list: fieldList });
+    while (true){
+        const apiResponse = await comicVineClient.get<any>({ resource: 'movies', field_list: fieldList , offset});
 
-    if (!apiResponse || apiResponse.error !== 'OK') return null;
+        if (!apiResponse || apiResponse.error !== 'OK'){
+            console.error({ method: 'MoviesLoader', message: 'ComicVine request failed', offset });
+            break;
+        }
+    
+        const { results: movies } = apiResponse;
+    
+        for (const movie of movies) {
+            console.log(movie);
+        }
 
-    const { results: movies } = apiResponse;
+        offset += 100;
+        
+        if (count === 100) break;
 
-    for (const movie of movies) {
+        count++;
     }
+
 });

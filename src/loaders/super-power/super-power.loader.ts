@@ -9,14 +9,30 @@ export const SuperPowerLoader = (async () => {
 
     const comicVineClient = new ComicVineClient();
     const fieldList = ['id', 'name', 'description', 'date_added']
+    let offset = 0;
+    let count = 1;
 
-    const apiResponse = await comicVineClient.get<any>({ resource: 'powers', field_list: fieldList });
+    while(true){
+        const apiResponse = await comicVineClient.get<any>({ resource: 'powers', field_list: fieldList, offset});
 
-    if (!apiResponse || apiResponse.error !== 'OK') return null;
+        if (!apiResponse || apiResponse.error !== 'OK') {
+            console.error({ method: 'SuperPowerLoader', message: 'ComicVine request failed', offset });
+            break;
+        }
+    
+        const { results: superPower } = apiResponse;
+    
+        for (const power of superPower) {
+            console.log(power.name);
+        }
 
-    const { results: superPower } = apiResponse;
+        offset += 100;
+        
+        if (count === 100) break;
 
-    for (const power of superPower) {
+        count++;
     }
+
+
 });
 
