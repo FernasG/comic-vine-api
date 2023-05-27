@@ -16,6 +16,6 @@ export const CharactersLoader = (async () => {
     const { results: characters } = apiResponse;
 
     for (const char of characters) {
-        
+        console.log(char);
     }
 });

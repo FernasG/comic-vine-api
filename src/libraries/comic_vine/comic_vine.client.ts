@@ -3,7 +3,7 @@ import { GetParams, RequestConfig } from "./comic_vine.interface";
 
 export class ComicVineClient {
     private readonly endpoint: string = 'https://comicvine.gamespot.com/api';
-    private readonly apiKey: string = process.env.COMIC_VINE_API_KEY as string;
+    private readonly apiKey: string = 'cc75328d88bb46db037f579fe4e318eada5c65f9';
     private axiosClient: Axios;
 
     constructor() {
