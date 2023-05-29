@@ -25,11 +25,14 @@ export const CharactersLoader = (async () => {
 
             if (character) continue;
 
-            await connection.getRepository(Characters).insert(char);
+            const insertResult = await connection.getRepository(Characters).insert(char);
+        
+            if (insertResult) console.info({ method: 'CharactersLoader', message: 'Inserted Character', id: char.id });
         }
 
         offset += 100;
 
         break;
+
     }
 });
