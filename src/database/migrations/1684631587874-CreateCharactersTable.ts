@@ -21,12 +21,8 @@ export class CreateCharactersTable1684631587874 implements MigrationInterface {
                 {
                     name: 'real_name',
                     type: 'varchar',
-                    length: '255'
-                },
-                {
-                    name: 'origin',
-                    type: 'varchar',
-                    length: '255'
+                    length: '255',
+                    isNullable: true
                 },
                 {
                     name: 'birth',

@@ -9,7 +9,6 @@ export const CharactersLoader = (async () => {
     const comicVineClient = new ComicVineClient();
     const fieldList = ['id', 'name', 'real_name', 'origin', 'birth', 'description', 'count_of_issue_appearances']
     let offset = 0;
-    let count = 1;
 
     while (true) {
         const apiResponse = await comicVineClient.get<any>({ resource: 'characters', field_list: fieldList, offset });
@@ -22,13 +21,15 @@ export const CharactersLoader = (async () => {
         const { results: characters } = apiResponse;
 
         for (const char of characters) {
-            console.log(char.name);
+            const character = await connection.getRepository(Characters).findOneBy({ id: char.id });
+
+            if (character) continue;
+
+            await connection.getRepository(Characters).insert(char);
         }
 
         offset += 100;
-        
-        if (count === 100) break;
 
-        count++;
+        break;
     }
 });
