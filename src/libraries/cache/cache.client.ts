@@ -32,6 +32,12 @@ export class CacheClient {
         await this.client.expire(key, HOURS_TO_SECONDS);
     }
 
+    public async incr(key: string): Promise<void> {
+        this.checkConnection();
+
+        await this.client.incr(key);
+    }
+
     public async get(key: string): Promise<string | null> {
         this.checkConnection();
 

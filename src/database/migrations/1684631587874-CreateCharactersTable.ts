@@ -31,7 +31,8 @@ export class CreateCharactersTable1684631587874 implements MigrationInterface {
                 },
                 {
                     name: 'description',
-                    type: 'text'
+                    type: 'text',
+                    isNullable: true
                 },
                 {
                     name: 'count_of_issue_appearances',

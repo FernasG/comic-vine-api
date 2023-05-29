@@ -35,12 +35,7 @@ export class KeyManager {
         await this.cacheClient.connect();
 
         const cacheKey = `${key}-${resource}`;
-        const value = await this.cacheClient.get(cacheKey);
-
-        if (!value) return;
-
-        const count = parseInt(value);
-        await this.cacheClient.set(cacheKey, count + 1);
+        await this.cacheClient.incr(cacheKey);
 
         await this.cacheClient.disconnect();
 

@@ -7,7 +7,7 @@ export const CharactersLoader = (async () => {
     if (!connection) return null;
 
     const comicVineClient = new ComicVineClient();
-    const fieldList = ['id', 'name', 'real_name', 'origin', 'birth', 'description', 'count_of_issue_appearances']
+    const fieldList = ['id', 'name', 'real_name', 'birth', 'description', 'count_of_issue_appearances']
     let offset = 0;
 
     while (true) {
