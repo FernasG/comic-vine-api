@@ -33,9 +33,9 @@ export class ComicVineClient {
                 return null;
             });
 
-        if (!apiResponse) return null;
-
         await this.keyManager.updateKeyCount(apiKey, resource);
+
+        if (!apiResponse) return null;
 
         return apiResponse as T;
     }

@@ -15,7 +15,7 @@ export const CharactersLoader = (async () => {
 
         if (!apiResponse || apiResponse.error !== 'OK') {
             console.error({ method: 'CharactersLoader', message: 'ComicVine request failed', offset });
-            break;
+            continue;
         };
 
         const { results: characters } = apiResponse;
