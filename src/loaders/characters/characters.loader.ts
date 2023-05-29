@@ -31,8 +31,5 @@ export const CharactersLoader = (async () => {
         }
 
         offset += 100;
-
-        break;
-
     }
 });

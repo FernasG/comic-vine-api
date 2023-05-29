@@ -72,7 +72,7 @@ export class KeyManager {
 
         if (!keys.length) return null;
 
-        const ttls = await Promise.all(keys.map(async (key) => this.cacheClient.ttl(key)));
+        const ttls = await Promise.all(keys.map((key) => this.cacheClient.ttl(key)));
 
         const minTtl = Math.min(...ttls);
 

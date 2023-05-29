@@ -4,9 +4,14 @@ up:
 build:
 	@docker-compose build
 
-sh:
+sh\:app:
 	@docker-compose exec comic-vine-api bash
 
+sh\:redis:
+	@docker-compose exec comic-vine-redis bash
+
+sh\:postgres:
+	@docker-compose exec comic-vine-postgres bash
 
 migration\:run:
 	@docker-compose exec comic-vine-api bash -c "npx tsx node_modules/typeorm/cli migration:run -d ormconfig.ts"
