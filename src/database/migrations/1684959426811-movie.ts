@@ -7,7 +7,7 @@ export class Movie1684959426811 implements MigrationInterface {
             name: 'movie',
             columns: [
                 {
-                    name: 'id_filme',
+                    name: 'id',
                     type: 'bigint',
                     isUnique: true,
                     unsigned: true,
