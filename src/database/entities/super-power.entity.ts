@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryColumn } from "typeorm";
 
 
 @Entity()
-export default class SuperPoder{
+export default class SuperPower{
 
     @PrimaryColumn({type: 'bigint', unsigned: true})
     id: number;
@@ -13,16 +13,16 @@ export default class SuperPoder{
         unique: true,
         nullable: false,
     })
-    nome:string;
+    name:string;
 
     @Column({
         type: 'text',
         nullable: false
     })
-    descricao:string;
+    description:string;
 
     @Column({
         type: 'timestamp',
     })
-    data_comic: Date;
+    data_added: Date;
 }

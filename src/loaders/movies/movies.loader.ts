@@ -1,6 +1,6 @@
 import { Connection } from "@database";
 import Movie from "@database/entities/movie.entity";
-import { ComicVineClient } from "src/libraries/comic_vine/comic_vine.client";
+import { ComicVineClient } from "src/libraries";
 
 
 export const MoviesLoader = (async () => {

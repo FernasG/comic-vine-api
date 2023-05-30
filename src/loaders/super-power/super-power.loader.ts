@@ -1,6 +1,6 @@
 import { Connection } from "@database";
 import SuperPoder from "@database/entities/super-power.entity";
-import { ComicVineClient } from "src/libraries/comic_vine/comic_vine.client";
+import { ComicVineClient } from "src/libraries";
 
 
 export const SuperPowerLoader = (async () => {
@@ -21,7 +21,7 @@ export const SuperPowerLoader = (async () => {
         }
     
         const { results: superPower } = apiResponse;
-    
+
         for (const pow of superPower) {
             const power = await connection.getRepository(SuperPoder).findOneBy({ id: pow.id });
 
@@ -34,6 +34,7 @@ export const SuperPowerLoader = (async () => {
 
         offset += 100;
         
+
     }
 
 

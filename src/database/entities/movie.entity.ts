@@ -13,39 +13,39 @@ export default class Movie{
         unique: true,
         nullable: false,
     })
-    nome:string;
+    name:string;
 
     @Column({
         type: 'text',
         nullable: false
     })
-    descricao:string;
+    description:string;
 
     @Column({
         type: 'timestamp',
         nullable: false
     })
-    data_lancamento: Date;
+    release_date: Date;
 
     @Column({
         type: 'timestamp',
         nullable: false
     })
-    data_comic: Date;
+    date_added: Date;
 
     @Column({
         type: 'varchar',
         length: 15,
         nullable: false
     })
-    tempo: string;
+    runtime: string;
 
     @Column({
         type: 'varchar',
         length: 30,
         nullable: false
     })
-    classificacao: string;
+    rating: string;
 
     @Column({
         type: 'decimal',
@@ -55,8 +55,8 @@ export default class Movie{
         default: 0
 
     })
-    @Check("orcamento > 0")
-    orcamento: number;
+    @Check("budget > 0")
+    budget: number;
 
     @Column({
         type: 'decimal',
@@ -66,7 +66,7 @@ export default class Movie{
         default: 0
 
     })
-    @Check("receita_bilheteria > 0")
-    receita_bilheteria: number;
+    @Check("total_revenue > 0")
+    total_revenue: number;
 
 }

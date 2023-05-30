@@ -10,4 +10,5 @@ import router from "./src/routes";
     app.use(router);
 
     app.listen(PORT, () => { console.log(`Server running - http://localhost:${PORT}`) });
+    
 })();

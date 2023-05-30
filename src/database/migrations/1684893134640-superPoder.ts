@@ -7,25 +7,25 @@ export class SuperPoder1684893134640 implements MigrationInterface {
             name: 'super-power',
             columns: [
                 {
-                    name: 'id_poder',
+                    name: 'id',
                     type: 'bigint',
                     isUnique: true,
                     unsigned: true,
                     isPrimary: true
                 },
                 {
-                    name: 'nome',
+                    name: 'name',
                     type: 'varchar',
                     length: '30',
                     isUnique: true,
                     isNullable: false,
                 },
                 {
-                    name: 'descricao',
+                    name: 'description',
                     type: 'text',
                 },
                 {
-                    name: 'data_comic',
+                    name: 'data_added',
                     type: 'timestamp',
                 }
             ]

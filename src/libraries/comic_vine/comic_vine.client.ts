@@ -4,8 +4,9 @@ import { GetParams, RequestConfig } from "./comic_vine.interface";
 
 export class ComicVineClient {
     private readonly endpoint: string = 'https://comicvine.gamespot.com/api';
-    private readonly keyManager: KeyManager;
+    private readonly apiKey: string = process.env.COMIC_VINE_API_KEY as string;
     private axiosClient: Axios;
+    keyManager: KeyManager;
 
     constructor() {
         this.axiosClient = new Axios({ baseURL: this.endpoint });

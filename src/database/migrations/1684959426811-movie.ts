@@ -7,46 +7,47 @@ export class Movie1684959426811 implements MigrationInterface {
             name: 'movie',
             columns: [
                 {
-                    name: 'id_filme',
+                    name: 'id',
                     type: 'bigint',
                     isUnique: true,
                     unsigned: true,
                     isPrimary: true
                 },
                 {
-                    name: 'nome',
+                    name: 'name',
                     type: 'varchar',
                     length: '200'
                 },
                 {
-                    name: 'descricao',
+                    name: 'description',
                     type: 'text',
                 },
                 {
-                    name: 'data_lancamento',
+                    name: 'release_date',
                     type: 'timestamp',
                 },
                 {
-                    name: 'data_comic',
+                    name: 'data_added',
                     type: 'timestamp',                },
                 {
-                    name: 'tempo',
+                    name: 'runtime',
                     type: 'varchar',
                     length: '15'
                 },
                 {
-                    name: 'classificacao',
+                    name: 'rating',
                     type: 'varchar',
                     length: '30',
                 },
                 {
-                    name: 'orcamento',
+                    name: 'budget',
                     type: 'real',
-                    //check: 'orcamento > 0'
+                    unsigned: true,
                 },
                 {
-                    name: 'receita_bilheteria',
+                    name: 'total_revenue',
                     type: 'real',
+                    unsigned: true,
                 }
             ]
         }));
