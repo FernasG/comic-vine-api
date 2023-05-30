@@ -11,11 +11,8 @@ export class Characters {
     @Column({ type: 'varchar', length: 255 })
     real_name: string;
 
-    @Column({ type: 'varchar', length: 255 })
-    origin: string;
-
-    @Column({ type: 'timestamp', nullable: true })
-    birth: Date;
+    @Column({ type: 'varchar', length: 20,  nullable: true })
+    birth: string;
 
     @Column({ type: 'text' })
     description: string;
