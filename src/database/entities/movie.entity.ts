@@ -5,7 +5,7 @@ import { Check, Column, Entity, PrimaryColumn } from "typeorm";
 export default class Movie{
 
     @PrimaryColumn({type: 'bigint', unsigned: true})
-    id_filme: number;
+    id: number;
 
     @Column({
         type: 'varchar',

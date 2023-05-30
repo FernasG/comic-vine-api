@@ -5,7 +5,7 @@ import { Column, Entity, PrimaryColumn } from "typeorm";
 export default class SuperPoder{
 
     @PrimaryColumn({type: 'bigint', unsigned: true})
-    id_poder: number;
+    id: number;
 
     @Column({
         type: 'varchar',
