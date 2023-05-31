@@ -1,7 +1,9 @@
+
+
 import { Connection } from "@database";
 import Powers from "@database/entities/powers.entity";
-import { ComicVineClient } from "src/libraries";
 
+import { ComicVineClient } from "src/libraries";
 
 export const SuperPowerLoader = (async () => {
     const connection = await Connection();
@@ -34,7 +36,6 @@ export const SuperPowerLoader = (async () => {
 
         offset += 100;
         
-
     }
 
 
