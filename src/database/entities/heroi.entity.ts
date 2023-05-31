@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
 import { Characters } from "./characters.entity";
-import SuperPoder from "./super-power.entity";
+import SuperPower from "./powers.entity";
 
 
 @Entity()
@@ -12,7 +12,7 @@ export class Heroi {
   @JoinColumn({ name: "fk_Personagem_id_personagem" })
   personagem: Characters;
 
-  @ManyToOne(() => SuperPoder)
+  @ManyToOne(() => SuperPower)
   @JoinColumn({ name: "fk_SuperPoder_id_poder" })
-  superPoder: SuperPoder;
+  superPoder: SuperPower;
 }

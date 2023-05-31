@@ -3,7 +3,7 @@ import { DataSource, DataSourceOptions } from "typeorm";
 export const Connection = ((): Promise<DataSource | null> => {
     const databaseConfig: DataSourceOptions = {
         type: 'postgres',
-        url: process.env.DATABASE_CONNECTION_URL,
+        url: 'postgres://postgres:admin@localhost:5432/comic-vine',
         entities: ['src/**/entities/*.entity.{js,ts}']
     };
 

@@ -1,72 +1,76 @@
 import { Check, Column, Entity, PrimaryColumn } from "typeorm";
 
 
-@Entity('Movie')
+@Entity()
 export default class Movie{
 
     @PrimaryColumn({type: 'bigint', unsigned: true})
-    id_filme: number;
+    id: number;
 
     @Column({
         type: 'varchar',
         length: 200,
         unique: true,
-        nullable: false,
+        //nullable: false,
     })
-    nome:string;
+    name:string;
 
     @Column({
         type: 'text',
-        nullable: false
+        nullable: true,
     })
-    descricao:string;
+    description:string;
 
     @Column({
         type: 'timestamp',
-        nullable: false
+        //nullable: false
     })
-    data_lancamento: Date;
+    release_date: Date;
 
     @Column({
         type: 'timestamp',
-        nullable: false
+        //nullable: false
     })
-    data_comic: Date;
+    date_added: Date;
 
     @Column({
         type: 'varchar',
         length: 15,
-        nullable: false
+        //nullable: false
+        nullable: true,
     })
-    tempo: string;
+    runtime: string;
 
     @Column({
         type: 'varchar',
         length: 30,
-        nullable: false
+        //nullable: false
+        nullable: true,
     })
-    classificacao: string;
+    rating: string;
 
     @Column({
-        type: 'decimal',
-        precision: 10,
-        scale: 2,
-        nullable: false,
-        default: 0
+        type: 'varchar',
+        length: 200,
+        //precision: 10,
+        //scale: 2,
+        //nullable: false,
+        //default: 0
+        nullable: true,
 
     })
-    @Check("orcamento > 0")
-    orcamento: number;
+    budget: string;
 
     @Column({
-        type: 'decimal',
-        precision: 10,
-        scale: 2,
-        nullable: false,
-        default: 0
+        type: 'varchar',
+        length: 200,
+        //precision: 10,
+        //scale: 2,
+        //nullable: false,
+        //default: 0
+        nullable: true,
 
     })
-    @Check("receita_bilheteria > 0")
-    receita_bilheteria: number;
+    total_revenue: string;
 
 }

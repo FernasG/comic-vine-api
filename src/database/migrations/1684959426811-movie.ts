@@ -14,39 +14,48 @@ export class Movie1684959426811 implements MigrationInterface {
                     isPrimary: true
                 },
                 {
-                    name: 'nome',
+                    name: 'name',
                     type: 'varchar',
                     length: '200'
                 },
                 {
-                    name: 'descricao',
+                    name: 'description',
                     type: 'text',
+                    isNullable: true,
                 },
                 {
-                    name: 'data_lancamento',
+                    name: 'release_date',
                     type: 'timestamp',
                 },
                 {
-                    name: 'data_comic',
-                    type: 'timestamp',                },
-                {
-                    name: 'tempo',
-                    type: 'varchar',
-                    length: '15'
+                    name: 'date_added',
+                    type: 'timestamp',                
                 },
                 {
-                    name: 'classificacao',
+                    name: 'runtime',
+                    type: 'varchar',
+                    length: '15',
+                    isNullable: true,
+                },
+                {
+                    name: 'rating',
                     type: 'varchar',
                     length: '30',
+                    isNullable: true,
                 },
                 {
-                    name: 'orcamento',
-                    type: 'real',
-                    //check: 'orcamento > 0'
+                    name: 'budget',
+                    type: 'varchar',
+                    length: '200',
+                    unsigned: true,
+                    isNullable: true,
                 },
                 {
-                    name: 'receita_bilheteria',
-                    type: 'real',
+                    name: 'total_revenue',
+                    type: 'varchar',
+                    length: '200',
+                    unsigned: true,
+                    isNullable: true,
                 }
             ]
         }));
