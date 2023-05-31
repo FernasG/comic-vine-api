@@ -9,7 +9,7 @@ export const MoviesLoader = (async () => {
     if (!connection) return null;
 
     const comicVineClient = new ComicVineClient();
-    const fieldList = ['id', 'name', 'description', 'release_date', 'data_added', 'runtime', 'rating', 'budget', 'total_revenue']
+    const fieldList = ['id', 'name', 'description', 'release_date', 'date_added', 'runtime', 'rating', 'budget', 'total_revenue']
     let offset = 0;
 
     while (true) {

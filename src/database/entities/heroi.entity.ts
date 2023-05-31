@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
 import { Characters } from "./characters.entity";
-import SuperPower from "./super-power.entity";
+import SuperPower from "./powers.entity";
 
 
 @Entity()

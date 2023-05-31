@@ -21,33 +21,41 @@ export class Movie1684959426811 implements MigrationInterface {
                 {
                     name: 'description',
                     type: 'text',
+                    isNullable: true,
                 },
                 {
                     name: 'release_date',
                     type: 'timestamp',
                 },
                 {
-                    name: 'data_added',
-                    type: 'timestamp',                },
+                    name: 'date_added',
+                    type: 'timestamp',                
+                },
                 {
                     name: 'runtime',
                     type: 'varchar',
-                    length: '15'
+                    length: '15',
+                    isNullable: true,
                 },
                 {
                     name: 'rating',
                     type: 'varchar',
                     length: '30',
+                    isNullable: true,
                 },
                 {
                     name: 'budget',
-                    type: 'real',
+                    type: 'varchar',
+                    length: '200',
                     unsigned: true,
+                    isNullable: true,
                 },
                 {
                     name: 'total_revenue',
-                    type: 'real',
+                    type: 'varchar',
+                    length: '200',
                     unsigned: true,
+                    isNullable: true,
                 }
             ]
         }));

@@ -1,7 +1,7 @@
 import { Check, Column, Entity, PrimaryColumn } from "typeorm";
 
 
-@Entity('Movie')
+@Entity()
 export default class Movie{
 
     @PrimaryColumn({type: 'bigint', unsigned: true})
@@ -11,62 +11,66 @@ export default class Movie{
         type: 'varchar',
         length: 200,
         unique: true,
-        nullable: false,
+        //nullable: false,
     })
     name:string;
 
     @Column({
         type: 'text',
-        nullable: false
+        nullable: true,
     })
     description:string;
 
     @Column({
         type: 'timestamp',
-        nullable: false
+        //nullable: false
     })
     release_date: Date;
 
     @Column({
         type: 'timestamp',
-        nullable: false
+        //nullable: false
     })
     date_added: Date;
 
     @Column({
         type: 'varchar',
         length: 15,
-        nullable: false
+        //nullable: false
+        nullable: true,
     })
     runtime: string;
 
     @Column({
         type: 'varchar',
         length: 30,
-        nullable: false
+        //nullable: false
+        nullable: true,
     })
     rating: string;
 
     @Column({
-        type: 'decimal',
-        precision: 10,
-        scale: 2,
-        nullable: false,
-        default: 0
+        type: 'varchar',
+        length: 200,
+        //precision: 10,
+        //scale: 2,
+        //nullable: false,
+        //default: 0
+        nullable: true,
 
     })
-    @Check("budget > 0")
-    budget: number;
+    budget: string;
 
     @Column({
-        type: 'decimal',
-        precision: 10,
-        scale: 2,
-        nullable: false,
-        default: 0
+        type: 'varchar',
+        length: 200,
+        //precision: 10,
+        //scale: 2,
+        //nullable: false,
+        //default: 0
+        nullable: true,
 
     })
-    @Check("total_revenue > 0")
-    total_revenue: number;
+    total_revenue: string;
 
 }
