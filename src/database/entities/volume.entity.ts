@@ -1,12 +1,12 @@
 import { Column, Entity, PrimaryColumn } from "typeorm";
 
 @Entity('Volume')
-export default class Volume{
+export class Volume {
   @PrimaryColumn({
     type: 'bigint',
     unsigned: true
   })
-  id_volume: number;
+  id: number;
 
   @Column({
     type: 'varchar',

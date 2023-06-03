@@ -1,12 +1,12 @@
 import { Column, Entity, PrimaryColumn } from "typeorm";
 
 @Entity('Editor')
-export default class Editor{
+export class Editor{
   @PrimaryColumn({
     type: 'bigint',
     unsigned: true
   })
-  id_editor: number;
+  id: number;
 
   @Column({
     type: 'varchar',
@@ -41,5 +41,4 @@ export default class Editor{
     length: 255,
   })
   street:string;
-
 }

@@ -2,6 +2,6 @@ import { DataSource } from "typeorm";
 
 export default new DataSource({
     type: 'postgres',
-    url: 'postgres://postgres:admin@localhost:5432/comic-vine',
+    url: process.env.DATABASE_URL,
     migrations: ['src/**/migrations/**.{js,ts}']
 });
