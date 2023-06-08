@@ -1,6 +1,6 @@
 
 import { Connection, SuperPowers } from "@database";
-import { ComicVineClient } from "src/libraries";
+import { ComicVineClient } from "@libraries";
 
 export const SuperPowerLoader = (async () => {
     const connection = await Connection();

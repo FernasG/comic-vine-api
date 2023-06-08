@@ -1,5 +1,5 @@
 import { Volumes, Connection } from "@database";
-import { ComicVineClient } from "src/libraries";
+import { ComicVineClient } from "@libraries";
 
 export const VolumesLoader = (async () => {
 	const connection = await Connection();

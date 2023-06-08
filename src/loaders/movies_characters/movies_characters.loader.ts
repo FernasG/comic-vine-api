@@ -1,5 +1,5 @@
-import { Characters, SuperPowers, Connection, CharactersPowers, Movies, MoviesCharacters } from "@database";
-import { ComicVineClient } from "src/libraries";
+import { Characters, Connection, Movies, MoviesCharacters } from "@database";
+import { ComicVineClient } from "@libraries";
 
 export const MoviesCharactersLoader = (async () => {
     const connection = await Connection();

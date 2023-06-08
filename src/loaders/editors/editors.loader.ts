@@ -1,5 +1,5 @@
 import { Editors, Connection } from "@database";
-import { ComicVineClient } from "src/libraries";
+import { ComicVineClient } from "@libraries";
 
 export const EditorsLoader = (async () => {
     const connection = await Connection();

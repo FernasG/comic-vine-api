@@ -7,3 +7,4 @@ export * from "./characters/characters.loader";
 export * from "./editors/editors.loader";
 export * from "./volumes/volumes.loader";
 export * from "./movies/movies.loader";
+export * from "./loaders_runner";
