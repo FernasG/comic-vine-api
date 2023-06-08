@@ -19,32 +19,28 @@ export class CreateTableVolume1685475128908 implements MigrationInterface {
                     length: '255'
                 },
                 {
-                    name: 'editions_number',
+                    name: 'description',
+                    type: 'text',
+                    isNullable: true
+                },
+                {
+                    name: 'start_year',
+                    type: 'varchar',
+                    length: '255',
+                    isNullable: true
+                },
+                {
+                    name: 'count_of_issues',
                     type: 'integer',
                     default: 0
                 },
                 {
-                    name: 'nickname',
-                    type: 'varchar(255)'
-                },
-                {
-                    name: 'comic_date',
-                    type: 'timestamp'
-                },
-                {
-                    name: 'description',
-                    type: 'text'
-                },
-                {
-                    name: 'last_edition',
-                    type: 'varchar(255)'
-                },
-                {
-                    name: 'first_edition',
-                    type: 'varchar(255)'
+                    name: 'date_added',
+                    type: 'timestamp',
+                    isNullable: true
                 }
             ]
-        }))
+        }));
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
