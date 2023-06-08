@@ -1,4 +1,4 @@
-import { Editor, Connection } from "@database";
+import { Editors, Connection } from "@database";
 import { ComicVineClient } from "src/libraries";
 
 export const EditorLoader = (async () => {
@@ -21,11 +21,11 @@ export const EditorLoader = (async () => {
     const { results: editors } = apiResponse;
 
     for (const edit of editors) {
-      const editor = await connection.getRepository(Editor).findOneBy({ id: edit.id });
+      const editor = await connection.getRepository(Editors).findOneBy({ id: edit.id });
 
       if (editor) continue;
 
-      const insertResult = await connection.getRepository(Editor).insert(edit);
+      const insertResult = await connection.getRepository(Editors).insert(edit);
 
       if (insertResult) console.info({ method: 'EditorLoader',message: 'Inserted Character',id: edit.id });
     }

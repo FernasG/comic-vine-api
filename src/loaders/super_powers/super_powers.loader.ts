@@ -1,6 +1,5 @@
 
-import { Connection } from "@database";
-import SuperPoder from "@database/entities/super-power.entity";
+import { Connection, SuperPowers } from "@database";
 import { ComicVineClient } from "src/libraries/comic_vine/comic_vine.client";
 
 
@@ -24,11 +23,11 @@ export const SuperPowerLoader = (async () => {
         const { results: superPower } = apiResponse;
     
         for (const pow of superPower) {
-            const power = await connection.getRepository(SuperPoder).findOneBy({ id: pow.id });
+            const power = await connection.getRepository(SuperPowers).findOneBy({ id: pow.id });
 
             if (power) continue;
 
-            const insertResult = await connection.getRepository(SuperPoder).insert(pow);
+            const insertResult = await connection.getRepository(SuperPowers).insert(pow);
         
             if (insertResult) console.info({ method: 'PowersLoader', message: 'Inserted Power', id: pow.id });
         }

@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
 
-import Movie from "./movie.entity";
+import Movie from "./movies.entity";
 import { Characters } from "./characters.entity";
 
 

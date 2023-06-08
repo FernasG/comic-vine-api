@@ -1,10 +1,10 @@
 import { Check, Column, Entity, PrimaryColumn } from "typeorm";
 
 
-@Entity('Movie')
-export default class Movie{
+@Entity()
+export default class Movies {
 
-    @PrimaryColumn({type: 'bigint', unsigned: true})
+    @PrimaryColumn({ type: 'bigint', unsigned: true })
     id_filme: number;
 
     @Column({
@@ -13,13 +13,13 @@ export default class Movie{
         unique: true,
         nullable: false,
     })
-    nome:string;
+    nome: string;
 
     @Column({
         type: 'text',
         nullable: false
     })
-    descricao:string;
+    descricao: string;
 
     @Column({
         type: 'timestamp',

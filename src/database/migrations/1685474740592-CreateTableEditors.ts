@@ -44,6 +44,7 @@ export class CreateTableEditor1685474740592 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable('editors');
     }
 
 }

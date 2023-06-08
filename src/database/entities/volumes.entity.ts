@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryColumn } from "typeorm";
 
-@Entity('Volume')
-export class Volume {
+@Entity()
+export class Volumes {
   @PrimaryColumn({
     type: 'bigint',
     unsigned: true
@@ -12,41 +12,41 @@ export class Volume {
     type: 'varchar',
     length: 255,
   })
-  name:string;
+  name: string;
 
   @Column({
     type: 'integer',
     unsigned: true,
     default: 0
   })
-  editions_number:number;
+  editions_number: number;
 
   @Column({
     type: 'varchar',
     length: 255,
   })
-  nickname:string;
+  nickname: string;
 
-  @Column({ 
-    type: 'timestamp', 
+  @Column({
+    type: 'timestamp',
   })
-  comic_date:Date;
+  comic_date: Date;
 
   @Column({
     type: 'text',
   })
-  description:string;
+  description: string;
 
   @Column({
     type: 'varchar',
     length: 255,
   })
-  last_edition:string;
-  
+  last_edition: string;
+
   @Column({
     type: 'varchar',
     length: 255,
   })
-  first_edition:string;
+  first_edition: string;
 
 }

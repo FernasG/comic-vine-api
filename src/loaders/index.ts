@@ -1,3 +1,5 @@
+export * from "./characters_powers/characters_powers.loader";
+export * from "./super_powers/super_powers.loader";
 export * from "./characters/characters.loader";
-export * from "./editor/editor.loader";
-export * from "./volume/volume.loader";
+export * from "./editors/editors.loader";
+export * from "./volumes/volumes.loader";

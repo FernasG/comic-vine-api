@@ -1,11 +1,9 @@
 import { Column, Entity, PrimaryColumn } from "typeorm";
 
-
 @Entity()
-export default class SuperPoder{
-
-    @PrimaryColumn({type: 'bigint', unsigned: true})
-    id_poder: number;
+export class SuperPowers {
+    @PrimaryColumn({ type: 'bigint', unsigned: true })
+    id: number;
 
     @Column({
         type: 'varchar',
@@ -13,13 +11,13 @@ export default class SuperPoder{
         unique: true,
         nullable: false,
     })
-    nome:string;
+    nome: string;
 
     @Column({
         type: 'text',
         nullable: false
     })
-    descricao:string;
+    descricao: string;
 
     @Column({
         type: 'timestamp',

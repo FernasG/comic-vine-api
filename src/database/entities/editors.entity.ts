@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryColumn } from "typeorm";
 
-@Entity('Editor')
-export class Editor{
+@Entity()
+export class Editors {
   @PrimaryColumn({
     type: 'bigint',
     unsigned: true
@@ -12,33 +12,33 @@ export class Editor{
     type: 'varchar',
     length: 255,
   })
-  name:string;
+  name: string;
 
   @Column({
     type: 'text',
   })
-  description:string;
+  description: string;
 
   @Column({
     type: 'timestamp',
   })
-  comic_date:Date;
+  comic_date: Date;
 
   @Column({
     type: 'varchar',
     length: 255,
   })
-  state:string;
+  state: string;
 
   @Column({
     type: 'varchar',
     length: 255,
   })
-  city:string;
+  city: string;
 
   @Column({
     type: 'varchar',
     length: 255,
   })
-  street:string;
+  street: string;
 }

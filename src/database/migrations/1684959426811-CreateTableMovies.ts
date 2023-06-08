@@ -4,7 +4,7 @@ export class Movie1684959426811 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'movie',
+            name: 'movies',
             columns: [
                 {
                     name: 'id',
@@ -28,7 +28,8 @@ export class Movie1684959426811 implements MigrationInterface {
                 },
                 {
                     name: 'data_comic',
-                    type: 'timestamp',                },
+                    type: 'timestamp',
+                },
                 {
                     name: 'tempo',
                     type: 'varchar',
@@ -37,16 +38,15 @@ export class Movie1684959426811 implements MigrationInterface {
                 {
                     name: 'classificacao',
                     type: 'varchar',
-                    length: '30',
+                    length: '30'
                 },
                 {
                     name: 'orcamento',
-                    type: 'real',
-                    //check: 'orcamento > 0'
+                    type: 'real'
                 },
                 {
                     name: 'receita_bilheteria',
-                    type: 'real',
+                    type: 'real'
                 }
             ]
         }));

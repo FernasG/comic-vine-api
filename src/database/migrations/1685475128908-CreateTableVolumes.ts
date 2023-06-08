@@ -4,7 +4,7 @@ export class CreateTableVolume1685475128908 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'volume',
+            name: 'volumes',
             columns: [
                 {
                     name: 'id',
@@ -48,6 +48,7 @@ export class CreateTableVolume1685475128908 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable('volumes');
     }
 
 }
