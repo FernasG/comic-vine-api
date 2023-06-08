@@ -4,7 +4,7 @@ export class SuperPoder1684893134640 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'super-power',
+            name: 'super_powers',
             columns: [
                 {
                     name: 'id',
@@ -14,28 +14,25 @@ export class SuperPoder1684893134640 implements MigrationInterface {
                     isPrimary: true
                 },
                 {
-                    name: 'nome',
+                    name: 'name',
                     type: 'varchar',
-                    length: '30',
-                    isUnique: true,
-                    isNullable: false,
+                    length: '255'
                 },
                 {
-                    name: 'descricao',
+                    name: 'description',
                     type: 'text',
+                    isNullable: true
                 },
                 {
-                    name: 'data_comic',
-                    type: 'timestamp',
+                    name: 'date_added',
+                    type: 'timestamp'
                 }
             ]
         }));
-
-        
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('super-power');
+        await queryRunner.dropTable('super_powers');
     }
 
 }

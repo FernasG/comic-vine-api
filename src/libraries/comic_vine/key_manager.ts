@@ -17,6 +17,8 @@ export class KeyManager {
 
         await this.cacheClient.connect();
 
+        resource = this.getCleanedResouceKey(resource);
+
         const findResult = await this.findKey(resource);
 
         if (!findResult) {
@@ -33,6 +35,8 @@ export class KeyManager {
 
     public async updateKeyCount(key: string, resource: string): Promise<void> {
         await this.cacheClient.connect();
+
+        resource = this.getCleanedResouceKey(resource);
 
         const cacheKey = `${key}-${resource}`;
         await this.cacheClient.incr(cacheKey);
@@ -80,5 +84,9 @@ export class KeyManager {
         await setTimeout(minTtl * 1000);
 
         return;
+    }
+
+    private getCleanedResouceKey(resource: string): string {
+        return resource.replace(/[^a-zA-Z]/gm, '');
     }
 }

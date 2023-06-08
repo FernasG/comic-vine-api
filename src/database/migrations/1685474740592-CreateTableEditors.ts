@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
-export class CreateTableVolume1685475128908 implements MigrationInterface {
+export class CreateTableEditor1685474740592 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'volume',
+            name: 'editors',
             columns: [
                 {
                     name: 'id',
@@ -19,35 +19,41 @@ export class CreateTableVolume1685475128908 implements MigrationInterface {
                     length: '255'
                 },
                 {
-                    name: 'editions_number',
-                    type: 'integer',
-                    default: 0
-                },
-                {
-                    name: 'nickname',
-                    type: 'varchar(255)'
-                },
-                {
-                    name: 'comic_date',
-                    type: 'timestamp'
+                    name: 'birth',
+                    type: 'timestamp',
+                    isNullable: true
                 },
                 {
                     name: 'description',
-                    type: 'text'
+                    type: 'text',
+                    isNullable: true
                 },
                 {
-                    name: 'last_edition',
-                    type: 'varchar(255)'
+                    name: 'date_added',
+                    type: 'timestamp'
                 },
                 {
-                    name: 'first_edition',
-                    type: 'varchar(255)'
+                    name: 'gender',
+                    type: 'smallint'
+                },
+                {
+                    name: 'hometown',
+                    type: 'varchar',
+                    length: '255',
+                    isNullable: true
+                },
+                {
+                    name: 'country',
+                    type: 'varchar',
+                    length: '255',
+                    isNullable: true
                 }
             ]
         }))
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable('editors');
     }
 
 }

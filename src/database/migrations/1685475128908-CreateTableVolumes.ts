@@ -1,11 +1,10 @@
-import { timeStamp } from 'console'
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
-export class CreateTableEditor1685474740592 implements MigrationInterface {
+export class CreateTableVolume1685475128908 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'editors',
+            name: 'volumes',
             columns: [
                 {
                     name: 'id',
@@ -21,29 +20,31 @@ export class CreateTableEditor1685474740592 implements MigrationInterface {
                 },
                 {
                     name: 'description',
-                    type: 'text'
+                    type: 'text',
+                    isNullable: true
                 },
                 {
-                    name: 'comic_date',
-                    type: 'timestamp'
+                    name: 'start_year',
+                    type: 'varchar',
+                    length: '255',
+                    isNullable: true
                 },
                 {
-                    name: 'state',
-                    type: 'varchar(255)'
+                    name: 'count_of_issues',
+                    type: 'integer',
+                    default: 0
                 },
                 {
-                    name: 'city',
-                    type: 'varchar(255)'
-                },
-                {
-                    name: 'street',
-                    type: 'varchar(255)'
+                    name: 'date_added',
+                    type: 'timestamp',
+                    isNullable: true
                 }
             ]
-        }))
+        }));
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable('volumes');
     }
 
 }
