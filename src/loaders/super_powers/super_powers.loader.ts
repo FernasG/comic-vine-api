@@ -28,7 +28,7 @@ export const SuperPowerLoader = (async () => {
 
             const insertResult = await connection.getRepository(SuperPowers).insert(pow);
 
-            if (insertResult) console.info({ method: 'PowersLoader', message: 'Inserted Power', id: pow.id });
+            if (insertResult) console.info({ method: 'SuperPowerLoader', message: 'Inserted Power', id: pow.id });
         }
 
         offset += 100;

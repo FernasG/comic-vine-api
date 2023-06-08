@@ -1,10 +1,10 @@
 import { Router, Request, Response } from "express";
-import { MoviesLoader, MoviesCharactersLoader } from "./loaders";
+import { CharactersPowersLoader } from "./loaders";
 
 const router = Router();
 
 router.get('', async (req: Request, res: Response) => {
-    await MoviesCharactersLoader();
+    await CharactersPowersLoader();
 
     res.send('Server OK.');
 });
