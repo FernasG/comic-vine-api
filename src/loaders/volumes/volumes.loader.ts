@@ -31,5 +31,7 @@ export const VolumeLoader = (async () => {
     }
 
     offset += 100;
+
+    if (offset > apiResponse.number_of_total_results) break;
   }
 });

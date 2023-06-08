@@ -14,24 +14,21 @@ export class SuperPoder1684893134640 implements MigrationInterface {
                     isPrimary: true
                 },
                 {
-                    name: 'nome',
+                    name: 'name',
                     type: 'varchar',
-                    length: '30',
-                    isUnique: true,
-                    isNullable: false,
+                    length: '255'
                 },
                 {
-                    name: 'descricao',
-                    type: 'text'
+                    name: 'description',
+                    type: 'text',
+                    isNullable: true
                 },
                 {
-                    name: 'data_comic',
+                    name: 'date_added',
                     type: 'timestamp'
                 }
             ]
         }));
-
-
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

@@ -1,10 +1,10 @@
 import { Router, Request, Response } from "express";
-import { SuperPowerLoader } from "./loaders";
+import { CharactersPowersLoader, CharactersLoader } from "./loaders";
 
 const router = Router();
 
 router.get('', async (req: Request, res: Response) => {
-    await SuperPowerLoader();
+    await CharactersPowersLoader();
 
     res.send('Server OK.');
 });

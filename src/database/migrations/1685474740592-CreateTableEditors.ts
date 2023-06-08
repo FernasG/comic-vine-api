@@ -1,4 +1,3 @@
-import { timeStamp } from 'console'
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
 export class CreateTableEditor1685474740592 implements MigrationInterface {
@@ -20,24 +19,34 @@ export class CreateTableEditor1685474740592 implements MigrationInterface {
                     length: '255'
                 },
                 {
-                    name: 'description',
-                    type: 'text'
+                    name: 'birth',
+                    type: 'timestamp',
+                    isNullable: true
                 },
                 {
-                    name: 'comic_date',
+                    name: 'description',
+                    type: 'text',
+                    isNullable: true
+                },
+                {
+                    name: 'date_added',
                     type: 'timestamp'
                 },
                 {
-                    name: 'state',
-                    type: 'varchar(255)'
+                    name: 'gender',
+                    type: 'smallint'
                 },
                 {
-                    name: 'city',
-                    type: 'varchar(255)'
+                    name: 'hometown',
+                    type: 'varchar',
+                    length: '255',
+                    isNullable: true
                 },
                 {
-                    name: 'street',
-                    type: 'varchar(255)'
+                    name: 'country',
+                    type: 'varchar',
+                    length: '255',
+                    isNullable: true
                 }
             ]
         }))
