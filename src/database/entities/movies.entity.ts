@@ -1,72 +1,31 @@
 import { Check, Column, Entity, PrimaryColumn } from "typeorm";
 
-
 @Entity()
-export default class Movies {
-
+export class Movies {
     @PrimaryColumn({ type: 'bigint', unsigned: true })
-    id_filme: number;
+    id: number;
 
-    @Column({
-        type: 'varchar',
-        length: 200,
-        unique: true,
-        nullable: false,
-    })
-    nome: string;
+    @Column({ type: 'varchar', length: 255 })
+    name: string;
 
-    @Column({
-        type: 'text',
-        nullable: false
-    })
-    descricao: string;
+    @Column({ type: 'text' })
+    description: string;
 
-    @Column({
-        type: 'timestamp',
-        nullable: false
-    })
-    data_lancamento: Date;
+    @Column({ type: 'timestamp' })
+    release_date: Date;
 
-    @Column({
-        type: 'timestamp',
-        nullable: false
-    })
-    data_comic: Date;
+    @Column({ type: 'timestamp' })
+    date_added: Date;
 
-    @Column({
-        type: 'varchar',
-        length: 15,
-        nullable: false
-    })
-    tempo: string;
+    @Column({ type: 'varchar', length: 50 })
+    runtime: string;
 
-    @Column({
-        type: 'varchar',
-        length: 30,
-        nullable: false
-    })
-    classificacao: string;
+    @Column({ type: 'varchar', length: 30 })
+    rating: string;
 
-    @Column({
-        type: 'decimal',
-        precision: 10,
-        scale: 2,
-        nullable: false,
-        default: 0
+    @Column({ type: 'varchar', length: 255 })
+    budget: string;
 
-    })
-    @Check("orcamento > 0")
-    orcamento: number;
-
-    @Column({
-        type: 'decimal',
-        precision: 10,
-        scale: 2,
-        nullable: false,
-        default: 0
-
-    })
-    @Check("receita_bilheteria > 0")
-    receita_bilheteria: number;
-
+    @Column({ type: 'varchar', length: 255 })
+    total_revenue: string;
 }
