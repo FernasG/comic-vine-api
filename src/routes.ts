@@ -1,10 +1,10 @@
 import { Router, Request, Response } from "express";
-import { VolumesLoader } from "./loaders";
+import { EditorsVolumesLoader } from "./loaders";
 
 const router = Router();
 
 router.get('', async (req: Request, res: Response) => {
-    await VolumesLoader();
+    await EditorsVolumesLoader();
 
     res.send('Server OK.');
 });
