@@ -1,3 +1,4 @@
+export * from "./editors_characters.entity";
 export * from "./characters_powers.entity";
 export * from "./super_powers.entity";
 export * from "./characters.entity";
