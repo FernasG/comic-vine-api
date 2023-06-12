@@ -7,29 +7,29 @@ export const EditorsVolumesLoader = (async () => {
     if (!connection) return null;
 
     const comicVineClient = new ComicVineClient();
-    const fieldList = ['people'];
+    const fieldList = ['volume_credits'];
 
-    const volumes = await connection.getRepository(Volumes)
-        .createQueryBuilder('volumes')
+    const editors = await connection.getRepository(Editors)
+        .createQueryBuilder('editors')
         .select(['id'])
         .stream();
 
-    for await (const { id: volumeId } of volumes) {
-        const apiResponse = await comicVineClient.get<any>({ resource: `volume/4050-${volumeId}`, field_list: fieldList });
+    for await (const { id: editorId } of editors) {
+        const apiResponse = await comicVineClient.get<any>({ resource: `person/4040-${editorId}`, field_list: fieldList });
 
         if (!apiResponse || apiResponse.error !== 'OK') {
-            console.error({ method: 'EditorsVolumesLoader', message: 'ComicVine request failed', volume_id: volumeId });
+            console.error({ method: 'EditorsVolumesLoader', message: 'ComicVine request failed', editor_id: editorId });
             continue;
         };
 
-        const { results: { people: editors } } = apiResponse;
+        const { results: { volume_credits: volumes } } = apiResponse;
 
-        if (!editors) continue;
+        if (!volumes) continue;
 
-        for (const { id: editorId } of editors) {
-            const editor = await connection.getRepository(Editors).findOneBy({ id: editorId });
+        for (const { id: volumeId } of volumes) {
+            const volume = await connection.getRepository(Volumes).findOneBy({ id: volumeId });
 
-            if (!editor) continue;
+            if (!volume) continue;
 
             const params = { editor_id: editorId, volume_id: volumeId };
 

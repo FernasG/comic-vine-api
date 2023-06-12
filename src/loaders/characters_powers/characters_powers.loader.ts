@@ -7,27 +7,27 @@ export const CharactersPowersLoader = (async () => {
     if (!connection) return null;
 
     const comicVineClient = new ComicVineClient();
-    const fieldList = ['powers'];
+    const fieldList = ['characters'];
 
-    const characters = await connection.getRepository(Characters)
-        .createQueryBuilder('characters')
+    const powers = await connection.getRepository(SuperPowers)
+        .createQueryBuilder('super_powers')
         .select(['id'])
         .stream();
 
-    for await (const { id: charId } of characters) {
-        const apiResponse = await comicVineClient.get<any>({ resource: `character/4005-${charId}`, field_list: fieldList });
+    for await (const { id: powerId } of powers) {
+        const apiResponse = await comicVineClient.get<any>({ resource: `power/4035-${powerId}`, field_list: fieldList });
 
         if (!apiResponse || apiResponse.error !== 'OK') {
-            console.error({ method: 'CharactersPowersLoader', message: 'ComicVine request failed', character_id: charId });
+            console.error({ method: 'CharactersPowersLoader', message: 'ComicVine request failed', power_id: powerId });
             continue;
         };
 
-        const { results: { powers } } = apiResponse;
+        const { results: { characters } } = apiResponse;
 
-        for (const { id: powerId } of powers) {
-            const power = await connection.getRepository(SuperPowers).findOneBy({ id: powerId });
+        for (const { id: charId } of characters) {
+            const character = await connection.getRepository(Characters).findOneBy({ id: charId });
 
-            if (!power) continue;
+            if (!character) continue;
 
             const params = { character_id: charId, power_id: powerId };
 
