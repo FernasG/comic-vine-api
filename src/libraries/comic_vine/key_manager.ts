@@ -25,7 +25,11 @@ export class KeyManager {
             console.info({ method: 'KeyManager.getKey', message: 'No Key found, locking until next Key available.' });
             await this.lockGetKey(resource);
 
-            return this.findKey(resource);
+            const key = await this.findKey(resource);
+
+            await this.cacheClient.disconnect();
+
+            return key;
         }
 
         await this.cacheClient.disconnect();

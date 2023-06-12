@@ -39,7 +39,7 @@ export const MoviesCharactersLoader = (async () => {
 
             if (insertResult) {
                 console.info({
-                    method: 'MoviesCharactersLoader', message: 'Inserted Character Power',
+                    method: 'MoviesCharactersLoader', message: 'Inserted Movie Character',
                     movie_id: movieId, character_id: charId
                 });
             }

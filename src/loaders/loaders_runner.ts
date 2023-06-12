@@ -7,11 +7,11 @@ import {
     EditorsVolumesLoader,
     MoviesCharactersLoader,
     CharactersPowersLoader,
-    EditorsCharactersLoader,
+    EditorsCharactersLoader
 } from "@loaders";
 
 export const LoadersRunner = (async () => {
-    const START_LOADERS = process.env.START_LOADERS === "true" ? true : false;
+    const START_LOADERS = process.env.START_LOADERS === 'true' ? true : false;
 
     if (!START_LOADERS) return null;
 
