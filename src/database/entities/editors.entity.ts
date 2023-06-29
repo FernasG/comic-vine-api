@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryColumn } from "typeorm";
+import { Characters, Volumes } from "@database";
 
 @Entity()
 export class Editors {
@@ -25,4 +26,20 @@ export class Editors {
 
 	@Column({ type: 'varchar', length: 255, nullable: true })
 	country: string;
+
+	@ManyToMany(() => Volumes)
+	@JoinTable({
+		name: 'editors_volumes',
+		joinColumn: { name: 'editor_id', referencedColumnName: 'id' },
+		inverseJoinColumn: { name: 'volume_id', referencedColumnName: 'id' }
+	})
+	volumes: Volumes;
+
+	@ManyToMany(() => Characters)
+	@JoinTable({
+		name: 'editors_characters',
+		joinColumn: { name: 'editor_id', referencedColumnName: 'id' },
+		inverseJoinColumn: { name: 'character_id', referencedColumnName: 'id' }
+	})
+	characters: Characters;
 }

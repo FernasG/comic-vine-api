@@ -1,4 +1,5 @@
-import { Check, Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryColumn } from "typeorm";
+import { Characters } from "@database";
 
 @Entity()
 export class Movies {
@@ -28,4 +29,12 @@ export class Movies {
 
     @Column({ type: 'varchar', length: 255 })
     total_revenue: string;
+
+    @ManyToMany(() => Characters)
+    @JoinTable({
+        name: 'movies_characters',
+        joinColumn: { name: 'movie_id', referencedColumnName: 'id' },
+        inverseJoinColumn: { name: 'character_id', referencedColumnName: 'id' }
+    })
+    characters: Characters;
 }
