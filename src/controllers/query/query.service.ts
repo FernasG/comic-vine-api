@@ -1,13 +1,15 @@
 import { Connection } from "@database";
 import { TableMap } from "./query.constants";
+import { QueryParamsParsed, Response } from "./query.interface";
+import { FiltersService } from "./filters/filters.service";
 
-const parseQueryParams = ((params: any): { table: string, joins: string[], select: string[], take: number, skip: number } => {
-    const { table, select, joins, limit, offset } = params;
+const parseQueryParams = ((params: any): QueryParamsParsed => {
+    const { table, select, joins, limit, offset, filter } = params;
 
     const take = limit && parseInt(limit) <= 100 ? parseInt(limit) : 100;
     const skip = offset && parseInt(offset) ? parseInt(offset) : 0;
 
-    const queryParams = {
+    const queryParams: QueryParamsParsed = {
         table: table ? table : null,
         joins: joins ? joins.split(',') : [],
         select: select ? select.split(',') : [],
@@ -15,12 +17,14 @@ const parseQueryParams = ((params: any): { table: string, joins: string[], selec
         skip
     };
 
+    if (filter && parseInt(filter)) queryParams.filterId = parseInt(filter);
+
     return queryParams;
 });
 
-export const query = (async (queryParams: any): Promise<{ statusCode: number, data: object }> => {
+export const query = (async (queryParams: any): Promise<Response> => {
     try {
-        const { table, select, joins, take, skip } = parseQueryParams(queryParams);
+        const { table, select, joins, take, skip, filterId } = parseQueryParams(queryParams);
 
         if (!Object.keys(TableMap).includes(table)) return { statusCode: 400, data: { message: 'Table selected not found' } };
 
@@ -29,6 +33,12 @@ export const query = (async (queryParams: any): Promise<{ statusCode: number, da
         const connection = await Connection();
 
         if (!connection) return { statusCode: 500, data: { message: 'Failed to create database connection' } };
+
+        if (filterId) {
+            const FilterFunction = FiltersService.getFilterFunction(filterId);
+
+            if (FilterFunction) return FilterFunction(connection);
+        }
 
         const query = connection.getRepository(entity).createQueryBuilder(table).select(select);
 
