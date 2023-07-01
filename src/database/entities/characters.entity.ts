@@ -1,5 +1,5 @@
 import { Column, Entity, JoinTable, ManyToMany, PrimaryColumn } from "typeorm";
-import { SuperPowers } from "@database";
+import { Editors, Movies, SuperPowers } from "@database";
 
 @Entity()
 export class Characters {
@@ -28,4 +28,20 @@ export class Characters {
         inverseJoinColumn: { name: 'power_id', referencedColumnName: 'id' }
     })
     powers: SuperPowers;
+
+    @ManyToMany(() => Editors)
+    @JoinTable({
+        name: 'editors_characters',
+        joinColumn: { name: 'character_id', referencedColumnName: 'id' },
+        inverseJoinColumn: { name: 'editor_id', referencedColumnName: 'id' }
+    })
+    editors: Editors;
+
+    @ManyToMany(() => Movies)
+    @JoinTable({
+        name: 'movies_characters',
+        joinColumn: { name: 'character_id', referencedColumnName: 'id' },
+        inverseJoinColumn: { name: 'movie_id', referencedColumnName: 'id' }
+    })
+    movies: Movies;
 }
