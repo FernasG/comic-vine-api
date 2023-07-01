@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryColumn } from "typeorm";
+import { Characters } from "@database";
 
 @Entity()
 export class SuperPowers {
@@ -13,4 +14,12 @@ export class SuperPowers {
 
     @Column({ type: 'timestamp' })
     date_added: Date;
+
+    @ManyToMany(() => Characters)
+    @JoinTable({
+        name: 'characters_powers',
+        joinColumn: { name: 'power_id', referencedColumnName: 'id' },
+        inverseJoinColumn: { name: 'character_id', referencedColumnName: 'id' }
+    })
+    characters: Characters;
 }
