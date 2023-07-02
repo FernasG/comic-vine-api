@@ -1,9 +1,5 @@
 import { DataSource } from "typeorm";
 
-// Movies-----------------------------------------------------
-// 3 → Filmes com os maiores custos de produção
-// 4 → Filmes com os menores custos de produção
-
 export const MoviesHigherDuration = (async (connection: DataSource) => {
     try {
         const movies = await connection.createQueryRunner().query(`
